@@ -23,7 +23,7 @@
 #endif
 
                      // use PsFree [ true / false ]
-#define PSFREE true  // use the newer psfree webkit exploit.
+#define PSFREE false  // use the newer psfree webkit exploit.
                      // this is fairly stable but may fail which will require you to try and load the payload again.
 
                      // use SD Card [ true / false ]
