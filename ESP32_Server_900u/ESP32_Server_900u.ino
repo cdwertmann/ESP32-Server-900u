@@ -43,15 +43,15 @@
                       // you must select a partition scheme labeled with "SPIFFS" with this enabled and USEFAT must be false.
 
                      // enable internal goldhen.h [ true / false ]
-#define INTHEN true  // goldhen is placed in the app partition to free up space on the storage for other payloads. 
+#define INTHEN false  // goldhen is placed in the app partition to free up space on the storage for other payloads. 
                      // with this enabled you do not upload goldhen to the board, set this to false if you wish to upload goldhen.
 
                        // enable autohen [ true / false ]
-#define AUTOHEN false  // this will load goldhen instead of the normal index/payload selection page, use this if you only want hen and no other payloads. 
+#define AUTOHEN true  // this will load goldhen instead of the normal index/payload selection page, use this if you only want hen and no other payloads. 
                        // you can update goldhen by uploading the goldhen payload to the board storage with the filename "goldhen.bin".
 
                      // enable fan threshold [ true / false ]
-#define FANMOD true  // this will include a function to set the consoles fan ramp up temperature in °C 
+#define FANMOD false  // this will include a function to set the consoles fan ramp up temperature in °C 
                      // this will not work if the board is a esp32 and the usb control is disabled.
 
 
@@ -64,8 +64,8 @@
 
 //create access point
 boolean startAP = true;
-String AP_SSID = "PS4_WEB_AP";
-String AP_PASS = "password";
+String AP_SSID = "PS4";
+String AP_PASS = "1122334455";
 IPAddress Server_IP(10, 1, 1, 1);
 IPAddress Subnet_Mask(255, 255, 255, 0);
 
@@ -749,6 +749,7 @@ void setup() {
     //USBSerial.println("");
     WiFi.softAPConfig(Server_IP, Server_IP, Subnet_Mask);
     WiFi.softAP(AP_SSID.c_str(), AP_PASS.c_str());
+    WiFi.setTxPower(WIFI_POWER_7dBm);
     //USBSerial.println("WIFI AP started");
     dnsServer.setTTL(30);
     dnsServer.setErrorReplyCode(DNSReplyCode::ServerFailure);
